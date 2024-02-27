@@ -1,0 +1,17 @@
+#We are using the base node image that has npm and Node.js
+FROM node:latest
+
+#Set working directory for backend
+WORKDIR /app/quirknotes/backend
+
+# Copy backend package files
+COPY quirknotes/backend/package*.json ./
+
+# Install backend dependencies
+RUN npm install
+
+# Copy backend source code
+COPY quirknotes/backend ./
+
+# Command to build and start the backend
+CMD ["npm","run","dev"]

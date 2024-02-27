@@ -1,0 +1,27 @@
+services:
+
+  backend:
+    image: aarinjasikumar/quirknotes_backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_backend
+    ports:
+    - "4000:4000"
+    environment:
+    - ENV=Docker
+    depends_on:
+    - mongodb
+  mongodb:
+    image: mongo:latest
+    ports:
+    - "27017:27017"
+  
+  frontend:
+    image: aarinjasikumar/quirknotes_backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_frontend
+    ports:
+    - "3000:80"
+    environment:
+    - ENV=Docker
